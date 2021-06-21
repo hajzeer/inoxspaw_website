@@ -31,17 +31,16 @@ const CategoriesInner = ({categories}) => {
 
 
 export const getStaticPaths = async () => {
-    // Call an external API endpoint to get posts
+
     
     const {data} = await client.query({query: GET_ALL_CATEGORIES});
     const categories = data.categories
-    // Get the paths we want to pre-render based on posts
+
     const paths = categories.map((element) => ({
       params: { slug: element.Slug },
     }))
   
-    // We'll pre-render only these paths at build time.
-    // { fallback: false } means other routes should 404.
+
     return { paths, fallback: false }
   }
 
