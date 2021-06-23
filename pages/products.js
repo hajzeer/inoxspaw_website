@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 import Layout from '../layout/layout';
 import CategoriesList from '../components/productsComponents/categoriesList';
-import { GET_ALL_CATEGORIES } from "../graphql/queries";
+import { GET_ALL_CATEGORIES_FOR_PRESENTATION } from "../graphql/queries";
 import { client } from "../graphql/apollo-client";
 import { colors, fontSize, fontWeight } from '../utils';
-import {useState, useEffect} from 'react';
 
 
 const Container = styled.section`
@@ -42,7 +41,6 @@ flex-direction: column;
 
 const products = ({categories}) => {
     let helper;
-
     return (
         <Layout>
             <Container>
@@ -55,7 +53,7 @@ const products = ({categories}) => {
                         const index = categories.indexOf(category)
                         index % 2 === 0 ? (helper = false) : (helper = true);
                        return(
-                       <CategoriesList items={category} value={helper}/>
+                       <CategoriesList key={category.id} items={category} value={helper}/>
                        )
                     })}
                 </InnerContainer>
@@ -68,7 +66,7 @@ const products = ({categories}) => {
 export const getServerSideProps = async () => {
 
 
-    const {data} = await client.query({query: GET_ALL_CATEGORIES});
+    const {data} = await client.query({query: GET_ALL_CATEGORIES_FOR_PRESENTATION});
     return {
         props: {
             categories: data.categories

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { colors, fontSize, fontWeight } from '../../utils';
 import Link from 'next/link';
-
+import Image from 'next/image';
 
 
 const Container = styled.section`
@@ -18,9 +18,9 @@ flex-direction: column;
 `;
 
 const Subject = styled.h2`
-position: relative;
+position: absolute;
 align-self: ${props => props.flex ? 'flex-start' : 'flex-end'};
-top: 75%;
+top: 85%;
 margin: 0 20px 0 20px;
 
 color: ${colors.mainHEX};
@@ -29,12 +29,29 @@ font-weight: ${fontWeight.fontWeightMedium};
 
 `;
 
+const ImageOuter = styled.div`
+
+position: relative;
+width: 100%;
+height: 80%;
+
+
+
+`;
+
 
 const CategoriesList = ({items, value}) => {
 
             return(
-                <Link href={`/products/${items.Slug}`}>
+                <Link href={`/categories/${items.Slug}`}>
                     <Container flex={value} polygon={value} key={items.id}>
+                        <ImageOuter>
+                            <Image
+                                src={items.Image.url}
+                                layout='fill'
+
+                            />
+                        </ImageOuter>
                         <Subject flex={value}>{items.Name}</Subject>
                     </Container>
                 </Link>

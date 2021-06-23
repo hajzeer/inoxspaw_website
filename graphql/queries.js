@@ -16,7 +16,9 @@ query CategoriesLong{
   categories {
     id
     Name
-    Image
+    Image {
+      url
+    }
     Slug
   }
 }

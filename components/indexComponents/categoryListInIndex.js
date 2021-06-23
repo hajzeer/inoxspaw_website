@@ -24,7 +24,7 @@ const CategoryListInIndex = ({items}) => (
 
     items.map(({Name, id, Slug}) => {
         return(
-            <Link href={`/products/${Slug}`}>
+            <Link href={`/categories/${Slug}`}>
             <Container key={id}>
                 <h2>{Name}</h2>
             </Container>

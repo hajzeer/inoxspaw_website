@@ -19,7 +19,6 @@ justify-content: center;
 
 
 const CategoriesInner = ({categories}) => {
-  console.log(categories)
   return(
     <Layout>
     <Container>
