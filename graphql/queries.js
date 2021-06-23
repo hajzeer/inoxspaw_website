@@ -1,42 +1,43 @@
-import { gql } from '@apollo/client';
+/** @format */
 
+import { gql } from "@apollo/client";
 
 export const GET_ALL_CATEGORIES = gql`
-query Categories{
-  categories {
-    id
-    Name
-    Slug
-  }
-}
+    query Categories {
+        categories {
+            id
+            Name
+            Slug
+        }
+    }
 `;
 
 export const GET_ALL_CATEGORIES_FOR_PRESENTATION = gql`
-query CategoriesLong{
-  categories {
-    id
-    Name
-    Image {
-      url
+    query CategoriesLong {
+        categories {
+            id
+            Name
+            Image {
+                url
+            }
+            Slug
+        }
     }
-    Slug
-  }
-}
 `;
 
 export const GET_CATEGORIES_DETAILS = gql`
-query Categories  ($slug: String!){
-  categories (where: {Slug: $slug}){
-	Name
-  Image {
-    url
-  }
-    products {
-      Name  
-      Images {
-        url
-      }
+    query Categories($slug: String!) {
+        categories(where: { Slug: $slug }) {
+            Name
+            Image {
+                url
+            }
+            products {
+                Name
+                Images {
+                    url
+                }
+            }
+        }
     }
-  }
-}
 `;
