@@ -113,7 +113,7 @@ const CategoryListComponent = ({items}) => {
                 />
             </ImageOuter>
             <CategoryListInIndex items={items}/>
-            <Link href='/products'>
+            <Link href='/categories'>
                 <ButtonStyled/>
             </Link>
         </Container>

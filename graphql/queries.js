@@ -24,3 +24,19 @@ query CategoriesLong{
 }
 `;
 
+export const GET_CATEGORIES_DETAILS = gql`
+query Categories  ($slug: String!){
+  categories (where: {Slug: $slug}){
+	Name
+  Image {
+    url
+  }
+    products {
+      Name  
+      Images {
+        url
+      }
+    }
+  }
+}
+`;

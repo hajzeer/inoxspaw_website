@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Layout from '../layout/layout';
-import CategoriesList from '../components/productsComponents/categoriesList';
+import CategoriesList from '../components/categoriesComponents/categoriesList';
 import { GET_ALL_CATEGORIES_FOR_PRESENTATION } from "../graphql/queries";
 import { client } from "../graphql/apollo-client";
 import { colors, fontSize, fontWeight } from '../utils';
@@ -18,6 +18,7 @@ position: relative;
 
 top: 100px;
 margin: 0 0 0 20px;
+text-transform: uppercase;
 
 color: ${colors.mainHEX};
 font-size: ${fontSize.midFont};

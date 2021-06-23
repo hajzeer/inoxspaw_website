@@ -1,29 +1,72 @@
 import styled from 'styled-components';
+import Image from 'next/image';
 import Layout from '../../layout/layout';
 import { client } from '../../graphql/apollo-client';
-import { GET_ALL_CATEGORIES } from '../../graphql/queries';
-import { gql } from '@apollo/client';
+import { GET_ALL_CATEGORIES, GET_CATEGORIES_DETAILS } from '../../graphql/queries';
+import { colors, fontWeight, fontSize, zIndex } from '../../utils';
+import ProductsList from '../../components/productsComponents/productsList';
 
 
 
 const Container = styled.section`
 
+position: relative;
 width: 100%;
-height: 100vh;
-
+min-height: 100vh;
+height: 200vh;
+overflow: hidden;
 display: flex;
 flex-direction: column;
-align-items: center;
-justify-content: center;
+`;
+
+const ImageOuter = styled.div`
+
+background: ${colors.defaultWhiteHEX};
+width: 90%;
+height: 250px;
+position: relative;
+top: 100px;
+clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
+z-index: ${zIndex.levelMinus1};
+align-self: flex-end;
+
+
+
+`;
+
+const Subject = styled.h2`
+position: relative;
+margin: 0 20px 0 20px;
+top: 150px;
+align-self: flex-start;
+text-transform: uppercase;
+color: ${colors.mainHEX};
+font-size: ${fontSize.bigFont};
+font-weight: ${fontWeight.fontWeightMedium};
+
 `;
 
 
 const CategoriesInner = ({categories}) => {
+  console.log(categories)
+
+  const categoryVariable = categories[0];
+
   return(
     <Layout>
-    <Container>
-        {categories[0].Name}
-    </Container>
+      <Container>
+        <Subject>
+            {categoryVariable.Name}
+        </Subject>
+        <ImageOuter>
+          <Image
+              src={categoryVariable.Image.url}
+              layout='fill'
+              objectFit='cover'
+          />
+        </ImageOuter>
+        <ProductsList items={categoryVariable.products}/>
+      </Container>
     </Layout>
   )
 }
@@ -47,15 +90,7 @@ export const getStaticPaths = async () => {
 
     const {slug: Slug} = context.params
     const {data} = await client.query({
-      query: gql`
-      query Categories ($slug: String!){
-        categories(where: {Slug: $slug}){
-          id
-          Name
-          Slug
-        }
-      }
-      `,
+      query: GET_CATEGORIES_DETAILS,
       variables: {slug: Slug}
     });
     return {

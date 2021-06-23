@@ -96,7 +96,7 @@ const NavBar = ({isVisible, handlerIsVisible}) => {
                 </Anchor>
             </Link>
 
-            <Link href='/products'>
+            <Link href='/categories'>
                 <Anchor onClick={handlerIsVisible}>
                     PRODUKTY
                 </Anchor>

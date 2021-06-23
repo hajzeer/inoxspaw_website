@@ -151,7 +151,7 @@ const About = () => {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fermentum libero ac odio convallis, ut feugiat felis viverra. Duis sollicitudin iaculis aliquet.
             
                 </Paragraph>
-                <Link href='/products'>
+                <Link href='/categories'>
                 <ButtonStyled/>
                 </Link>
                 </Container>

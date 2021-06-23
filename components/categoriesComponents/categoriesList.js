@@ -49,6 +49,7 @@ const CategoriesList = ({items, value}) => {
                             <Image
                                 src={items.Image.url}
                                 layout='fill'
+                                objectFit='cover'
 
                             />
                         </ImageOuter>
