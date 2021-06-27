@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const Container = styled.section`
     align-self: flex-start;
-
+    position: relative;
     margin: 20px 0;
     width: 90%;
     height: 250px;
@@ -31,7 +31,7 @@ const Subject = styled.h3`
 const ImageOuter = styled.div`
     position: relative;
     width: 100%;
-    height: auto;
+    height: 200px;
 `;
 
 const ProductsList = ({ items }) => {

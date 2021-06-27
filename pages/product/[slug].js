@@ -18,6 +18,7 @@ const Container = styled.section`
 `;
 
 const ImageOuter = styled.div`
+    position: relative;
     width: 80%;
     height: 200px;
     z-index: ${zIndex.levelMinus1};

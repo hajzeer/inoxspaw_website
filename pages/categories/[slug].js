@@ -21,13 +21,22 @@ const Container = styled.section`
 `;
 
 const ImageOuter = styled.div`
-    position: relative;
     background: ${colors.defaultWhiteHEX};
     width: 90%;
     height: 250px;
     clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
     z-index: ${zIndex.levelMinus1};
     align-self: flex-end;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`;
+const ImageInner = styled.div`
+    position: relative;
+    width: 100%;
+    height: 90%;
 `;
 
 const Subject = styled.h2`
@@ -52,11 +61,13 @@ const CategoriesInner = ({ categories }) => {
                     <Container>
                         <Subject>{categoryVariable.Name}</Subject>
                         <ImageOuter>
-                            <Image
-                                src={categoryVariable.Image.url}
-                                layout='fill'
-                                objectFit='cover'
-                            />
+                            <ImageInner>
+                                <Image
+                                    src={categoryVariable.Image.url}
+                                    layout='fill'
+                                    objectFit='cover'
+                                />
+                            </ImageInner>
                         </ImageOuter>
                         <Subject>Loading...</Subject>
                     </Container>
@@ -70,12 +81,15 @@ const CategoriesInner = ({ categories }) => {
             <Container>
                 <Subject>{categoryVariable.Name}</Subject>
                 <ImageOuter>
-                    <Image
-                        src={categoryVariable.Image.url}
-                        layout='fill'
-                        objectFit='cover'
-                    />
+                    <ImageInner>
+                        <Image
+                            src={categoryVariable.Image.url}
+                            layout='fill'
+                            objectFit='cover'
+                        />
+                    </ImageInner>
                 </ImageOuter>
+
                 <ProductsList items={categoryVariable.products} />
             </Container>
         </Layout>
