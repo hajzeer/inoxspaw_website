@@ -5,8 +5,22 @@ import Hero from "../components/indexComponents/heroComponent";
 import Layout from "../layout/layout";
 import { GET_ALL_CATEGORIES } from "../graphql/queries";
 import { client } from "../graphql/apollo-client";
+import { useRouter } from "next/router";
 
 const Home = ({ categories }) => {
+    const router = useRouter();
+
+    if (router.isFallback) {
+        return (
+            <>
+                <Layout>
+                    <Hero />
+                    <div>loading...</div>
+                </Layout>
+            </>
+        );
+    }
+
     return (
         <>
             <Layout>

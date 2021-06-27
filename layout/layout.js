@@ -21,7 +21,11 @@ const Layout = ({ children }) => {
         <section>
             <Head>
                 <title>Inoxspaw | maszyny rolnicze w zasięgu dłoni</title>
-
+                <link
+                    href='https://css.gg/chevron-right.css'
+                    rel='stylesheet'
+                />
+                <link href='https://css.gg/chevron-left.css' rel='stylesheet' />
                 <link rel='preconnect' href='https://fonts.gstatic.com' />
                 <link
                     href='https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap'

@@ -37,6 +37,31 @@ export const GET_CATEGORIES_DETAILS = gql`
                 Images {
                     url
                 }
+                Slug
+            }
+        }
+    }
+`;
+
+export const GET_PRODUCTS = gql`
+    query Products {
+        products {
+            id
+            Name
+            Slug
+        }
+    }
+`;
+
+export const GET_PRODUCTS_DETAILS = gql`
+    query Products($slug: String!) {
+        products(where: { Slug: $slug }) {
+            id
+            Name
+            Slug
+            Description
+            Images {
+                url
             }
         }
     }

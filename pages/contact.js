@@ -211,6 +211,7 @@ const ContactForm = ({ categories }) => {
                             </OptionStyled>
                         );
                     })}
+                    <OptionStyled value='INNE'>INNE</OptionStyled>
                 </SelectStyled>
                 <LabelStyled>Wiadomość</LabelStyled>
                 <TextAreaStyle

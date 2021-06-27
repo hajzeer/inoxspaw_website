@@ -6,6 +6,7 @@ import CategoriesList from "../components/categoriesComponents/categoriesList";
 import { GET_ALL_CATEGORIES_FOR_PRESENTATION } from "../graphql/queries";
 import { client } from "../graphql/apollo-client";
 import { colors, fontSize, fontWeight } from "../utils";
+import { useRouter } from "next/router";
 
 const Container = styled.section`
     position: relative;
@@ -38,6 +39,21 @@ const InnerContainer = styled.div`
 
 const products = ({ categories }) => {
     let helper;
+
+    const router = useRouter();
+
+    if (router.isFallback) {
+        return (
+            <>
+                <Layout>
+                    <Container>
+                        <Subject>Loading...</Subject>
+                    </Container>
+                </Layout>
+            </>
+        );
+    }
+
     return (
         <Layout>
             <Container>

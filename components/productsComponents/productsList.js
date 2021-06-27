@@ -3,6 +3,7 @@
 import styled from "styled-components";
 import { colors, fontWeight, fontSize, zIndex } from "../../utils";
 import Image from "next/image";
+import Link from "next/link";
 
 const Container = styled.section`
     position: relative;
@@ -44,16 +45,18 @@ const ProductsList = ({ items }) => {
             {items ? (
                 items.map((item) => {
                     return (
-                        <Container>
-                            <Subject>{item.Name}</Subject>
-                            <ImageOuter>
-                                <Image
-                                    src={item.Images[0].url}
-                                    layout='fill'
-                                    objectFit='cover'
-                                />
-                            </ImageOuter>
-                        </Container>
+                        <Link href={`/product/${item.Slug}`}>
+                            <Container>
+                                <Subject>{item.Name}</Subject>
+                                <ImageOuter>
+                                    <Image
+                                        src={item.Images[0].url}
+                                        layout='fill'
+                                        objectFit='cover'
+                                    />
+                                </ImageOuter>
+                            </Container>
+                        </Link>
                     );
                 })
             ) : (

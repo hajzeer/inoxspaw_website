@@ -10,12 +10,12 @@ import {
 } from "../../graphql/queries";
 import { colors, fontWeight, fontSize, zIndex } from "../../utils";
 import ProductsList from "../../components/productsComponents/productsList";
+import { useRouter } from "next/router";
 
 const Container = styled.section`
     position: relative;
     width: 100%;
     min-height: 100vh;
-    height: 200vh;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -44,9 +44,28 @@ const Subject = styled.h2`
 `;
 
 const CategoriesInner = ({ categories }) => {
-    console.log(categories);
-
     const categoryVariable = categories[0];
+    const router = useRouter();
+
+    if (router.isFallback) {
+        return (
+            <>
+                <Layout>
+                    <Container>
+                        <Subject>{categoryVariable.Name}</Subject>
+                        <ImageOuter>
+                            <Image
+                                src={categoryVariable.Image.url}
+                                layout='fill'
+                                objectFit='cover'
+                            />
+                        </ImageOuter>
+                        <Subject>Loading...</Subject>
+                    </Container>
+                </Layout>
+            </>
+        );
+    }
 
     return (
         <Layout>
