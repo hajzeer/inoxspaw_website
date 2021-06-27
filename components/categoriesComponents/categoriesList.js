@@ -6,7 +6,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 const Container = styled.section`
-    position: relative;
     align-self: ${(props) => (props.flex ? "flex-start" : "flex-end")};
     margin: 20px 0;
     width: 90%;
@@ -23,7 +22,6 @@ const Container = styled.section`
 `;
 
 const Subject = styled.h2`
-    position: relative;
     align-self: ${(props) => (props.flex ? "flex-start" : "flex-end")};
     margin: 0 20px 0 20px;
 

@@ -1,6 +1,6 @@
 /** @format */
 
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import Head from "next/head";
 import { colors } from "../utils";
 import Header from "../components/layoutComponents/header";
@@ -14,6 +14,12 @@ body {
     padding: 0;
     font-family: 'Oswald', sans-serif;
 }
+`;
+
+const Container = styled.section`
+    width: 100%;
+
+    padding: 100px 0 0 0;
 `;
 
 const Layout = ({ children }) => {
@@ -34,7 +40,7 @@ const Layout = ({ children }) => {
             </Head>
             <GlobalStyle />
             <Header />
-            {children}
+            <Container>{children}</Container>
             <Footer />
         </section>
     );

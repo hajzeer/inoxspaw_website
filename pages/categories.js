@@ -9,16 +9,10 @@ import { colors, fontSize, fontWeight } from "../utils";
 import { useRouter } from "next/router";
 
 const Container = styled.section`
-    position: relative;
-
     width: 100%;
-    height: 300vh;
+    height: auto;
 `;
 const Subject = styled.h2`
-    position: relative;
-
-    top: 100px;
-    margin: 0 0 0 20px;
     text-transform: uppercase;
 
     color: ${colors.mainHEX};
@@ -27,11 +21,7 @@ const Subject = styled.h2`
 `;
 
 const InnerContainer = styled.div`
-    position: relative;
-
     width: 100%;
-    height: auto;
-    top: 100px;
 
     display: flex;
     flex-direction: column;

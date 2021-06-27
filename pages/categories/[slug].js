@@ -26,7 +26,6 @@ const ImageOuter = styled.div`
     width: 90%;
     height: 250px;
     position: relative;
-    top: 100px;
     clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
     z-index: ${zIndex.levelMinus1};
     align-self: flex-end;
@@ -35,7 +34,7 @@ const ImageOuter = styled.div`
 const Subject = styled.h2`
     position: relative;
     margin: 0 20px 0 20px;
-    top: 150px;
+    top: 50px;
     align-self: flex-start;
     text-transform: uppercase;
     color: ${colors.mainHEX};

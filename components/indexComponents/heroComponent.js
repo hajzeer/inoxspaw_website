@@ -15,8 +15,6 @@ const Container = styled.section`
 
 const ImageOuter = styled.div`
     width: 100%;
-    position: relative;
-    top: 100px;
     left: -40px;
 
     clip-path: polygon(0 0, 75% 0, 100% 100%, 0% 100%);
@@ -24,7 +22,7 @@ const ImageOuter = styled.div`
 
 const TextDivStyled = styled.div`
     position: relative;
-    top: 60px;
+    top: -40px;
     z-index: ${zIndex.level4};
 `;
 
@@ -44,8 +42,6 @@ const Paragraph = styled.p`
 `;
 
 const HelperDiv = styled.div`
-    position: relative;
-    bottom: 0;
     width: 100%;
     height: 300px;
     background: ${colors.defaultWhiteHEX};

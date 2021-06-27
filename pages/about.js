@@ -8,10 +8,8 @@ import Layout from "../layout/layout";
 import { colors, fontWeight, fontSize, zIndex } from "../utils";
 
 const Container = styled.section`
-    position: relative;
-
     width: 100%;
-    height: 125vh;
+    height: 100vh;
     margin: 0;
 
     overflow: hidden;
@@ -21,15 +19,12 @@ const ImageOuter = styled.div`
     width: 100%;
     position: relative;
     right: -40px;
-    top: 100px;
 
     clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
     z-index: ${zIndex.levelMinus1};
 `;
 
 const Paragraph = styled.p`
-    position: relative;
-    top: 80px;
     margin: 35px 20px 0 20px;
     font-size: ${fontSize.smallFont};
 
@@ -38,8 +33,6 @@ const Paragraph = styled.p`
 
 const Subject = styled.h1`
     margin: 0 0 0 20px;
-    position: relative;
-    top: 110px;
     color: ${colors.mainHEX};
     font-size: ${fontSize.bigFont};
     font-weight: ${fontWeight.fontWeightMedium};
@@ -50,7 +43,6 @@ const ButtonStyled = styled.button`
     margin: 20px 0 0 0;
     padding: 0;
     position: relative;
-    top: 80px;
 
     left: 20px;
     outline: none;

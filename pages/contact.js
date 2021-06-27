@@ -5,15 +5,15 @@ import styled from "styled-components";
 import { colors, zIndex, fontSize } from "../utils";
 import Layout from "../layout/layout";
 import { client } from "../graphql/apollo-client.js";
-import { GET_ALL_CATEGORIES } from "../graphql/queries";
+import { GET_PRODUCTS } from "../graphql/queries";
 
 const ContactFormStyled = styled.div`
     width: 100%;
-    height: 95vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0 0 50px 0;
 `;
 
 const InputStyle = styled.input.attrs((props) => ({
@@ -48,7 +48,7 @@ const SelectStyled = styled.select`
     width: 320px;
     padding: 0 10px;
     font-size: ${fontSize.smallFont};
-
+    text-transform: uppercase;
     background: ${colors.defaultWhiteHEX};
     height: 35px;
     border-radius: 25px;
@@ -176,7 +176,7 @@ const ButtonStyled = styled.button`
 
 const LabelStyled = styled.label``;
 
-const ContactForm = ({ categories }) => {
+const ContactForm = ({ products }) => {
     let name = useRef(null);
     let email = useRef(null);
     let message = useRef(null);
@@ -204,7 +204,7 @@ const ContactForm = ({ categories }) => {
                 />
                 <LabelStyled>Temat</LabelStyled>
                 <SelectStyled>
-                    {categories.map(({ Name, id }) => {
+                    {products.map(({ Name, id }) => {
                         return (
                             <OptionStyled key={id} value={Name}>
                                 {Name}
@@ -225,11 +225,11 @@ const ContactForm = ({ categories }) => {
 };
 
 export const getStaticProps = async () => {
-    const { data } = await client.query({ query: GET_ALL_CATEGORIES });
+    const { data } = await client.query({ query: GET_PRODUCTS });
 
     return {
         props: {
-            categories: data.categories,
+            products: data.products,
         },
     };
 };

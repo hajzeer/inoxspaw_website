@@ -6,12 +6,10 @@ import { GET_PRODUCTS, GET_PRODUCTS_DETAILS } from "../../graphql/queries";
 import { colors, fontWeight, fontSize, zIndex } from "../../utils";
 import Image from "next/image";
 import Link from "next/link";
-import left from "../../public/chevron-left.svg";
 
 import Layout from "../../layout/layout";
 
 const Container = styled.section`
-    position: relative;
     width: 100%;
     min-height: 100vh;
     overflow: hidden;
@@ -22,8 +20,6 @@ const Container = styled.section`
 const ImageOuter = styled.div`
     width: 80%;
     height: 200px;
-    position: relative;
-    top: 100px;
     z-index: ${zIndex.levelMinus1};
     align-self: center;
     -webkit-filter: drop-shadow(5px 5px 5px #222);
@@ -36,9 +32,7 @@ const ImageOuter = styled.div`
 `;
 
 const Subject = styled.h2`
-    position: relative;
-    margin: 0 20px 0 20px;
-    top: 100px;
+    margin: 20px 20px 0 20px;
     align-self: center;
     text-transform: uppercase;
     color: ${colors.mainHEX};
@@ -47,9 +41,7 @@ const Subject = styled.h2`
 `;
 
 const Paragraph = styled.p`
-    position: relative;
-    top: 80px;
-    margin: 35px 20px 0 20px;
+    margin: 20px 20px 0 20px;
     font-size: ${fontSize.smallFont};
 
     color: ${colors.darkGreyHEX};
@@ -59,7 +51,6 @@ const ButtonStyled = styled.button`
     margin: 20px 0 0 0;
     padding: 0;
     position: relative;
-    top: 80px;
 
     align-self: center;
     outline: none;

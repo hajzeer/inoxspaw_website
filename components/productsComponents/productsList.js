@@ -6,10 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Container = styled.section`
-    position: relative;
     align-self: flex-start;
-
-    top: 100px;
 
     margin: 20px 0;
     width: 90%;
@@ -23,8 +20,6 @@ const Container = styled.section`
 `;
 
 const Subject = styled.h3`
-    position: relative;
-
     margin: 0 0 0 20px;
     text-transform: uppercase;
 

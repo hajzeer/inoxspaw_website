@@ -10,7 +10,6 @@ const Container = styled.section`
     position: relative;
     top: 85%;
     width: 100%;
-    height: 80vh;
 
     background: ${colors.defaultWhiteHEX};
 
