@@ -13,7 +13,6 @@ import ProductsList from "../../components/productsComponents/productsList";
 import { useRouter } from "next/router";
 
 const Container = styled.section`
-    position: relative;
     width: 100%;
     min-height: 100vh;
     overflow: hidden;
@@ -22,10 +21,10 @@ const Container = styled.section`
 `;
 
 const ImageOuter = styled.div`
+    position: relative;
     background: ${colors.defaultWhiteHEX};
     width: 90%;
     height: 250px;
-    position: relative;
     clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
     z-index: ${zIndex.levelMinus1};
     align-self: flex-end;

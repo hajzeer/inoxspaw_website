@@ -31,7 +31,7 @@ const Subject = styled.h3`
 const ImageOuter = styled.div`
     position: relative;
     width: 100%;
-    height: 80%;
+    height: auto;
 `;
 
 const ProductsList = ({ items }) => {
