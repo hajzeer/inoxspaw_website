@@ -47,7 +47,6 @@ const ImageOuter = styled.div`
 `;
 
 const Subject = styled.h2`
-    margin: 0 0 0 20px;
     align-self: center;
     text-transform: uppercase;
     color: ${colors.mainHEX};

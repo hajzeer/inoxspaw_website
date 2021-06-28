@@ -19,6 +19,7 @@ const Container = styled.section`
 const ImageOuter = styled.div`
     width: 100%;
     position: relative;
+    top: -30px;
     right: -80px;
 
     clip-path: polygon(0 0, 75% 0, 100% 100%, 0% 100%);

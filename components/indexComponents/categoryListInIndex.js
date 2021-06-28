@@ -11,13 +11,23 @@ const Container = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    cursor: pointer;
+`;
 
-    h2 {
-        margin: 0;
-        color: ${colors.darkGreyHEX};
-        font-size: ${fontSize.midFont};
-        font-weight: ${fontWeight.fontWeightReagular};
-        text-transform: uppercase;
+const Subject = styled.h2`
+    margin: 0;
+    color: ${colors.darkGreyHEX};
+    font-size: ${fontSize.midFont};
+    font-weight: ${fontWeight.fontWeightReagular};
+    text-transform: uppercase;
+    transition-duration: 0.2s;
+
+    &:focus {
+        color: ${colors.mainHEX};
+    }
+    &:hover {
+        color: ${colors.mainHEX};
+        transform: scale(1.1) translateX(20px);
     }
 `;
 
@@ -26,7 +36,7 @@ const CategoryListInIndex = ({ items }) =>
         return (
             <Link href={`/categories/${Slug}`}>
                 <Container key={id}>
-                    <h2>{Name}</h2>
+                    <Subject>{Name}</Subject>
                 </Container>
             </Link>
         );
