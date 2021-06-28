@@ -42,7 +42,6 @@ const ImageInner = styled.div`
 const Subject = styled.h2`
     position: relative;
     margin: 0 20px 0 20px;
-    top: 50px;
     align-self: flex-start;
     text-transform: uppercase;
     color: ${colors.mainHEX};
@@ -115,7 +114,7 @@ export const getStaticProps = async (context) => {
     });
     return {
         props: {
-            categories: data.categories,
+            categories: await data.categories,
         },
     };
 };

@@ -229,7 +229,7 @@ export const getStaticProps = async () => {
 
     return {
         props: {
-            products: data.products,
+            products: await data.products,
         },
     };
 };

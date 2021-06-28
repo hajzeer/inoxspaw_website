@@ -1,11 +1,12 @@
 /** @format */
-import { useState } from "react";
+import { useState, useRef } from "react";
 import styled, { keyframes } from "styled-components";
 import { client } from "../../graphql/apollo-client";
 import { GET_PRODUCTS, GET_PRODUCTS_DETAILS } from "../../graphql/queries";
 import { colors, fontWeight, fontSize, zIndex } from "../../utils";
 import Image from "next/image";
 import Link from "next/link";
+import { useSwipeable } from "react-swipeable";
 
 import Layout from "../../layout/layout";
 
@@ -184,11 +185,10 @@ const ImageStyled = styled(Image)`
 
 const Products = ({ products }) => {
     const [current, setCurrent] = useState(0);
+    const myRef = useRef();
 
     const productsValue = products[0];
     const ImageArray = productsValue.Images.length;
-
-    console.log(productsValue);
 
     const nextSlide = () => {
         setCurrent(current === ImageArray - 1 ? 0 : current + 1);
@@ -196,6 +196,26 @@ const Products = ({ products }) => {
 
     const prevSlide = () => {
         setCurrent(current === 0 ? ImageArray - 1 : current - 1);
+    };
+
+    const handerLeft = useSwipeable({
+        onSwipedLeft: () => {
+            setCurrent(current === ImageArray - 1 ? 0 : current + 1);
+        },
+    });
+    const handlerRight = useSwipeable({
+        onSwipedRight: () => {
+            setCurrent(current === 0 ? ImageArray - 1 : current - 1);
+        },
+    });
+
+    const refPassthrough = (el) => {
+        // call useSwipeable ref prop with el
+        handerLeft.ref(el);
+        handlerRight.ref(el);
+
+        // set myRef el so you can access it yourself
+        myRef.current = el;
     };
 
     return (
@@ -212,7 +232,7 @@ const Products = ({ products }) => {
                         return (
                             <>
                                 {index === current && (
-                                    <ImageOuter>
+                                    <ImageOuter ref={refPassthrough}>
                                         <ImageStyled
                                             active={current === index}
                                             src={image.url}
@@ -253,7 +273,7 @@ export const getStaticProps = async (context) => {
     });
     return {
         props: {
-            products: data.products,
+            products: await data.products,
         },
     };
 };
