@@ -14,6 +14,7 @@ const Container = styled.section`
 `;
 
 const ImageOuter = styled.div`
+    position: relative;
     width: 100%;
     left: -40px;
 

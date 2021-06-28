@@ -31,13 +31,14 @@ const Home = ({ categories }) => {
     );
 };
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
     const { data } = await client.query({ query: GET_ALL_CATEGORIES });
 
     return {
         props: {
-            categories: data.categories,
+            categories: await data.categories,
         },
+        revalidate: 60,
     };
 };
 

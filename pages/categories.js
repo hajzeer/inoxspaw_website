@@ -14,7 +14,7 @@ const Container = styled.section`
 `;
 const Subject = styled.h2`
     text-transform: uppercase;
-
+    margin: 0 20px 0 20px;
     color: ${colors.mainHEX};
     font-size: ${fontSize.midFont};
     font-weight: ${fontWeight.fontWeightMedium};
@@ -69,7 +69,7 @@ const products = ({ categories }) => {
     );
 };
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
     const { data } = await client.query({
         query: GET_ALL_CATEGORIES_FOR_PRESENTATION,
     });
@@ -77,6 +77,7 @@ export const getServerSideProps = async () => {
         props: {
             categories: data.categories,
         },
+        revalidate: 60,
     };
 };
 export default products;
