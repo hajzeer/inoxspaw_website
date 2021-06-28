@@ -9,8 +9,7 @@ import { colors, fontWeight, fontSize, zIndex } from "../utils";
 
 const Container = styled.section`
     width: 100%;
-    height: 100vh;
-    margin: 0;
+    padding: 0 0 50px 0;
 
     overflow: hidden;
 `;
@@ -25,7 +24,7 @@ const ImageOuter = styled.div`
 `;
 
 const Paragraph = styled.p`
-    margin: 35px 20px 0 20px;
+    margin: 20px 0 0 20px;
     font-size: ${fontSize.smallFont};
 
     color: ${colors.darkGreyHEX};
