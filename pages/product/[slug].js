@@ -15,13 +15,26 @@ const Container = styled.section`
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    padding: 0 0 50px 0;
 `;
 
+const ImageContainer = styled.div`
+    position: relative;
+    background: #fff;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    clip-path: polygon(0 20%, 100% 0%, 100% 80%, 0% 100%);
+`;
 const ImageOuter = styled.div`
     position: relative;
-    width: 80%;
-    height: 200px;
-    z-index: ${zIndex.levelMinus1};
+    width: 90%;
+    height: 250px;
+    z-index: ${zIndex.level1};
     align-self: center;
     -webkit-filter: drop-shadow(5px 5px 5px #222);
     filter: drop-shadow(5px 5px 5px #222);
@@ -33,7 +46,7 @@ const ImageOuter = styled.div`
 `;
 
 const Subject = styled.h2`
-    margin: 20px 20px 0 20px;
+    margin: 0 0 0 20px;
     align-self: center;
     text-transform: uppercase;
     color: ${colors.mainHEX};
@@ -118,9 +131,10 @@ const ArrowButtonPrev = styled.button`
     background: transparent;
     border: none;
     position: absolute;
-    top: 170px;
+    top: 40%;
     left: 20px;
     transition-duration: 0.2s;
+    z-index: ${zIndex.level5};
 
     &:active {
         transform: translateX(-5px);
@@ -130,9 +144,10 @@ const ArrowButtonNext = styled.button`
     position: absolute;
     background: transparent;
     border: none;
-    top: 170px;
+    top: 40%;
     right: 20px;
     transition-duration: 0.2s;
+    z-index: ${zIndex.level5};
 
     &:active {
         transform: translateX(5px);
@@ -186,28 +201,29 @@ const Products = ({ products }) => {
     return (
         <Layout>
             <Container>
-                <ArrowButtonPrev onClick={prevSlide}>
-                    <i class='gg-chevron-left'></i>
-                </ArrowButtonPrev>
-                <ArrowButtonNext onClick={nextSlide}>
-                    <i class='gg-chevron-right'></i>
-                </ArrowButtonNext>
-
-                {productsValue.Images.map((image, index) => {
-                    return (
-                        <>
-                            {index === current && (
-                                <ImageOuter>
-                                    <ImageStyled
-                                        active={current === index}
-                                        src={image.url}
-                                        layout='fill'
-                                    />
-                                </ImageOuter>
-                            )}
-                        </>
-                    );
-                })}
+                <ImageContainer>
+                    <ArrowButtonPrev onClick={prevSlide}>
+                        <i class='gg-chevron-left'></i>
+                    </ArrowButtonPrev>
+                    <ArrowButtonNext onClick={nextSlide}>
+                        <i class='gg-chevron-right'></i>
+                    </ArrowButtonNext>
+                    {productsValue.Images.map((image, index) => {
+                        return (
+                            <>
+                                {index === current && (
+                                    <ImageOuter>
+                                        <ImageStyled
+                                            active={current === index}
+                                            src={image.url}
+                                            layout='fill'
+                                        />
+                                    </ImageOuter>
+                                )}
+                            </>
+                        );
+                    })}
+                </ImageContainer>
                 <Subject>{productsValue.Name}</Subject>
                 <Paragraph>{productsValue.Description}</Paragraph>
                 <Link href='/contact'>

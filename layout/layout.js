@@ -19,7 +19,7 @@ body {
 const Container = styled.section`
     width: 100%;
 
-    padding: 100px 0 0 0;
+    padding: 80px 0 0 0;
 `;
 
 const Layout = ({ children }) => {
