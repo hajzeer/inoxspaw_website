@@ -19,6 +19,7 @@ const Container = styled.section`
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    justify-content: center;
 `;
 
 const Subject = styled.h2`
@@ -32,19 +33,24 @@ const Subject = styled.h2`
 
 const ImageOuter = styled.div`
     position: relative;
-    width: 100%;
-    height: 80%;
+    width: 75%;
+    height: 75%;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: ${(props) => (props.flex ? "flex-start" : "flex-end")};
 `;
 
 const CategoriesList = ({ items, value }) => {
     return (
         <Link href={`/categories/${items.Slug}`}>
             <Container flex={value} polygon={value} key={items.id}>
-                <ImageOuter>
+                <ImageOuter flex={value}>
                     <Image
                         src={items.Image.url}
                         layout='fill'
-                        objectFit='cover'
+                        objectFit='scale-down'
                     />
                 </ImageOuter>
                 <Subject flex={value}>{items.Name}</Subject>

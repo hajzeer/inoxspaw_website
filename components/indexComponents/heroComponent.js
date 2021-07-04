@@ -23,7 +23,6 @@ const ImageOuter = styled.div`
 
 const TextDivStyled = styled.div`
     position: relative;
-    top: -40px;
     z-index: ${zIndex.level4};
 `;
 
@@ -36,7 +35,7 @@ const Subject = styled.h1`
 `;
 
 const Paragraph = styled.p`
-    margin: 35px 20px 0 20px;
+    margin: 20px 20px 0 20px;
     font-size: ${fontSize.smallFont};
 
     color: ${colors.darkGreyHEX};

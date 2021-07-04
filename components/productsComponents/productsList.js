@@ -17,6 +17,7 @@ const Container = styled.section`
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    justify-content: center;
 `;
 
 const Subject = styled.h3`
@@ -30,8 +31,9 @@ const Subject = styled.h3`
 
 const ImageOuter = styled.div`
     position: relative;
-    width: 100%;
-    height: 200px;
+    width: 75%;
+    height: 75%;
+    margin: 10px;
 `;
 
 const ProductsList = ({ items }) => {
@@ -47,7 +49,7 @@ const ProductsList = ({ items }) => {
                                     <Image
                                         src={item.Images[0].url}
                                         layout='fill'
-                                        objectFit='cover'
+                                        objectFit='scale-down'
                                     />
                                 </ImageOuter>
                             </Container>

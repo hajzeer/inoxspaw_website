@@ -1,13 +1,12 @@
 /** @format */
 
 import styled from "styled-components";
-import { colors, fontSize, fontWeight } from "../../utils";
+import { colors, fontSize, fontWeight, zIndex } from "../../utils";
 import Link from "next/link";
 const Container = styled.section`
     position: relative;
     top: -50px;
     left: 20px;
-    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -15,19 +14,55 @@ const Container = styled.section`
 `;
 
 const Subject = styled.h2`
-    margin: 0;
+    width: fit-content;
+    position: relative;
+    padding: 5px 10px;
     color: ${colors.darkGreyHEX};
     font-size: ${fontSize.midFont};
     font-weight: ${fontWeight.fontWeightReagular};
     text-transform: uppercase;
     transition-duration: 0.2s;
+    z-index: ${zIndex.level1};
+    overflow: hidden;
+
+    &:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: -100%;
+        left: -100%;
+        background: ${colors.mainHEX};
+        transition-duration: 0.2s;
+        z-index: ${zIndex.levelMinus1};
+    }
+
+    &:before {
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 70%;
+        top: 0;
+        left: -5px;
+        background: ${colors.mainHEX};
+        transition-duration: 0.2s;
+        z-index: ${zIndex.levelMinus1};
+    }
 
     &:focus {
-        color: ${colors.mainHEX};
+        color: ${colors.defaultWhiteHEX};
+        transform: scale(1.1) translateX(10px);
     }
     &:hover {
-        color: ${colors.mainHEX};
-        transform: scale(1.1) translateX(20px);
+        color: ${colors.defaultWhiteHEX};
+        transform: scale(1.1) translateX(10px);
+    }
+
+    &:hover::after {
+        transform: translateX(100%) translateY(100%);
+    }
+    &:hover::before {
+        opacity: 0;
     }
 `;
 

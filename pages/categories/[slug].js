@@ -30,13 +30,15 @@ const ImageOuter = styled.div`
 
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
+
     justify-content: center;
 `;
 const ImageInner = styled.div`
     position: relative;
-    width: 100%;
-    height: 90%;
+    width: 80%;
+    height: 80%;
+    margin: 10px;
 `;
 
 const Subject = styled.h2`
@@ -84,7 +86,7 @@ const CategoriesInner = ({ categories }) => {
                         <Image
                             src={categoryVariable.Image.url}
                             layout='fill'
-                            objectFit='cover'
+                            objectFit='scale-down'
                         />
                     </ImageInner>
                 </ImageOuter>

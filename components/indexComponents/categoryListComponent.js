@@ -1,6 +1,6 @@
 /** @format */
-
-import styled from "styled-components";
+import { useState, useRef, useEffect } from "react";
+import styled, { keyframes } from "styled-components";
 import { colors, zIndex } from "../../utils";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,12 +17,18 @@ const Container = styled.section`
 `;
 
 const ImageOuter = styled.div`
-    width: 100%;
     position: relative;
-    top: -30px;
-    right: -80px;
+    width: 90%;
+    height: 250px;
+    z-index: ${zIndex.level1};
+    align-self: center;
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222);
 
-    clip-path: polygon(0 0, 75% 0, 100% 100%, 0% 100%);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 `;
 
 const ButtonStyled = styled.button`
@@ -93,17 +99,80 @@ const ButtonStyled = styled.button`
     }
 `;
 
+const ImageContainer = styled.div`
+    position: relative;
+    top: -50px;
+    background: #fff;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    clip-path: polygon(0 20%, 100% 0%, 100% 80%, 0% 100%);
+`;
+
+const ImageStyled = styled(Image)`
+    display: inline-block;
+    visibility: ${(props) => (props.active ? "visible" : "hidden")};
+    animation: ${(props) => (props.active ? fadeIn : fadeOut)} 0.4s linear;
+    transition: visibility 0.4s linear;
+`;
+
+const fadeIn = keyframes`
+  from {
+    transform: scale(.9);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+`;
+const fadeOut = keyframes`
+  from {
+    transform: scale(1);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(.9);
+    opacity: 1;
+  }
+`;
 const CategoryListComponent = ({ items }) => {
+    const [current, setCurrent] = useState(0);
+
+    const ImageArray = items.length;
+
+    useEffect(() => {
+        const Interval = setInterval(() => {
+            setCurrent(current === ImageArray - 1 ? 0 : current + 1);
+        }, 4000);
+        return () => clearInterval(Interval);
+    }, [current]);
     return (
         <Container>
-            <ImageOuter>
-                <Image
-                    src='/secondImage.png'
-                    width={400}
-                    height={300}
-                    quality={100}
-                />
-            </ImageOuter>
+            <ImageContainer>
+                {items.map((item, index) => {
+                    return (
+                        <>
+                            {index === current && (
+                                <ImageOuter>
+                                    <ImageStyled
+                                        key={index}
+                                        active={current === index}
+                                        src={item.Image.url}
+                                        layout='fill'
+                                    />
+                                </ImageOuter>
+                            )}
+                        </>
+                    );
+                })}
+            </ImageContainer>
             <CategoryListInIndex items={items} />
             <Link href='/categories'>
                 <ButtonStyled />

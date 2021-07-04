@@ -3,7 +3,7 @@
 import CategoryListComponent from "../components/indexComponents/categoryListComponent";
 import Hero from "../components/indexComponents/heroComponent";
 import Layout from "../layout/layout";
-import { GET_ALL_CATEGORIES } from "../graphql/queries";
+import { GET_ALL_CATEGORIES_FOR_PRESENTATION } from "../graphql/queries";
 import { client } from "../graphql/apollo-client";
 import { useRouter } from "next/router";
 
@@ -20,7 +20,6 @@ const Home = ({ categories }) => {
             </>
         );
     }
-
     return (
         <>
             <Layout>
@@ -32,7 +31,9 @@ const Home = ({ categories }) => {
 };
 
 export const getStaticProps = async () => {
-    const { data } = await client.query({ query: GET_ALL_CATEGORIES });
+    const { data } = await client.query({
+        query: GET_ALL_CATEGORIES_FOR_PRESENTATION,
+    });
 
     return {
         props: {

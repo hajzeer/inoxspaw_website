@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useSwipeable } from "react-swipeable";
 
 import Layout from "../../layout/layout";
+import Modal from "../../components/productsComponents/modal";
 
 const Container = styled.section`
     width: 100%;
@@ -184,10 +185,19 @@ const ImageStyled = styled(Image)`
 
 const Products = ({ products }) => {
     const [current, setCurrent] = useState(0);
+    const [isVisible, setIsVisible] = useState(false);
     const myRef = useRef();
 
     const productsValue = products[0];
     const ImageArray = productsValue.Images.length;
+
+    const handleClick = () => {
+        if (isVisible === false) {
+            setIsVisible(true);
+        } else {
+            setIsVisible(false);
+        }
+    };
 
     const nextSlide = () => {
         setCurrent(current === ImageArray - 1 ? 0 : current + 1);
@@ -220,22 +230,35 @@ const Products = ({ products }) => {
     return (
         <Layout>
             <Container>
+                <Modal
+                    isVisible={isVisible}
+                    prevSlide={prevSlide}
+                    nextSlide={nextSlide}
+                    items={productsValue}
+                    ref={refPassthrough}
+                    current={current}
+                    setVisibility={handleClick}
+                />
                 <ImageContainer>
                     <ArrowButtonPrev onClick={prevSlide}>
-                        <i class='gg-chevron-left'></i>
+                        <i className='gg-chevron-left'></i>
                     </ArrowButtonPrev>
                     <ArrowButtonNext onClick={nextSlide}>
-                        <i class='gg-chevron-right'></i>
+                        <i className='gg-chevron-right'></i>
                     </ArrowButtonNext>
                     {productsValue.Images.map((image, index) => {
                         return (
                             <>
                                 {index === current && (
-                                    <ImageOuter ref={refPassthrough}>
+                                    <ImageOuter
+                                        key={index}
+                                        ref={refPassthrough}
+                                        onClick={handleClick}>
                                         <ImageStyled
                                             active={current === index}
                                             src={image.url}
                                             layout='fill'
+                                            objectFit='scale-down'
                                         />
                                     </ImageOuter>
                                 )}
