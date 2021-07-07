@@ -10,6 +10,7 @@ import { useSwipeable } from "react-swipeable";
 
 import Layout from "../../layout/layout";
 import Modal from "../../components/productsComponents/modal";
+import SpecTable from "../../components/productsComponents/SpecTable";
 
 const Container = styled.section`
     width: 100%;
@@ -133,7 +134,7 @@ const ArrowButtonPrev = styled.button`
     border: none;
     position: absolute;
     top: 40%;
-    left: 20px;
+    left: 15px;
     transition-duration: 0.2s;
     z-index: ${zIndex.level5};
 
@@ -146,7 +147,7 @@ const ArrowButtonNext = styled.button`
     background: transparent;
     border: none;
     top: 40%;
-    right: 20px;
+    right: 15px;
     transition-duration: 0.2s;
     z-index: ${zIndex.level5};
 
@@ -181,6 +182,18 @@ const ImageStyled = styled(Image)`
     visibility: ${(props) => (props.active ? "visible" : "hidden")};
     animation: ${(props) => (props.active ? fadeIn : fadeOut)} 0.2s linear;
     transition: visibility 0.2s linear;
+`;
+
+const TableOuter = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
+const TableStyled = styled.table`
+    width: 90%;
+    border-spacing: 3px;
 `;
 
 const Products = ({ products }) => {
@@ -268,6 +281,14 @@ const Products = ({ products }) => {
                 </ImageContainer>
                 <Subject>{productsValue.Name}</Subject>
                 <Paragraph>{productsValue.Description}</Paragraph>
+                <Subject>DANE TECHNICZNE</Subject>
+                <TableOuter>
+                    <TableStyled>
+                        <tbody>
+                            <SpecTable items={productsValue} />
+                        </tbody>
+                    </TableStyled>
+                </TableOuter>
                 <Link href='/contact'>
                     <ButtonStyled />
                 </Link>

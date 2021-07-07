@@ -63,6 +63,10 @@ export const GET_PRODUCTS_DETAILS = gql`
             Images {
                 url
             }
+            table {
+                title
+                value
+            }
         }
     }
 `;

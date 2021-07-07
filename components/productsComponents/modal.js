@@ -51,7 +51,7 @@ const ArrowButtonPrev = styled.button`
     border: none;
     position: absolute;
     top: 40%;
-    left: 20px;
+    left: 15px;
     transition-duration: 0.2s;
     z-index: ${zIndex.level5};
 
@@ -64,7 +64,7 @@ const ArrowButtonNext = styled.button`
     background: transparent;
     border: none;
     top: 40%;
-    right: 20px;
+    right: 15px;
     transition-duration: 0.2s;
     z-index: ${zIndex.level5};
 
