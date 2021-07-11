@@ -37,7 +37,7 @@ const Anchor = styled.a`
     font-weight: ${fontWeight.fontWeightMedium};
     cursor: pointer;
 
-    margin: 10px 0 10px 15px;
+    margin: 15px 15px;
     text-decoration: none;
     z-index: ${zIndex.level9};
 `;

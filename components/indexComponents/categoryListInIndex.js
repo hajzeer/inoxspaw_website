@@ -64,6 +64,10 @@ const Subject = styled.h2`
     &:hover::before {
         opacity: 0;
     }
+
+    @media (min-width: 1024px) {
+        font-size: ${fontSize.bigFont};
+    }
 `;
 
 const CategoryListInIndex = ({ items }) =>

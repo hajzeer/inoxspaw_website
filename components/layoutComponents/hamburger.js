@@ -15,6 +15,10 @@ const ButtonStyled = styled.button`
     z-index: ${zIndex.level9};
     margin: 20px;
     cursor: pointer;
+
+    @media (min-width: 1024px) {
+        display: none;
+    }
 `;
 
 const SpanTopStyled = styled.div`

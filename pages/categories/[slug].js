@@ -20,6 +20,19 @@ const Container = styled.section`
     flex-direction: column;
 `;
 
+const ProductsDiv = styled.div`
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 1024px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+`;
+
 const ImageOuter = styled.div`
     background: ${colors.defaultWhiteHEX};
     width: 90%;
@@ -33,12 +46,20 @@ const ImageOuter = styled.div`
     align-items: flex-end;
 
     justify-content: center;
+
+    @media (min-width: 1024px) {
+        width: 60%;
+        margin: 40px 0;
+        height: 400px;
+    }
 `;
 const ImageInner = styled.div`
     position: relative;
     width: 80%;
-    height: 80%;
+    height: 400px;
     margin: 10px;
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222);
 `;
 
 const Subject = styled.h2`
@@ -49,6 +70,13 @@ const Subject = styled.h2`
     color: ${colors.mainHEX};
     font-size: ${fontSize.bigFont};
     font-weight: ${fontWeight.fontWeightMedium};
+
+    @media (min-width: 1024px) {
+        font-size: 50px;
+        width: 400px;
+        top: 200px;
+        left: 10%;
+    }
 `;
 
 const CategoriesInner = ({ categories }) => {
@@ -66,7 +94,7 @@ const CategoriesInner = ({ categories }) => {
                                 <Image
                                     src={categoryVariable.Image.url}
                                     layout='fill'
-                                    objectFit='cover'
+                                    objectFit='scale-down'
                                 />
                             </ImageInner>
                         </ImageOuter>
@@ -90,8 +118,9 @@ const CategoriesInner = ({ categories }) => {
                         />
                     </ImageInner>
                 </ImageOuter>
-
-                <ProductsList items={categoryVariable.products} />
+                <ProductsDiv>
+                    <ProductsList items={categoryVariable.products} />
+                </ProductsDiv>
             </Container>
         </Layout>
     );

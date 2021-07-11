@@ -11,7 +11,7 @@ const Container = styled.section`
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 99999;
+    z-index: ${zIndex.level8};
     display: ${(props) => (props.visibility ? "flex" : "none")};
     flex-direction: column;
     justify-content: center;
@@ -30,6 +30,10 @@ const ImageContainer = styled.div`
     align-items: center;
 
     clip-path: polygon(0 20%, 100% 0%, 100% 80%, 0% 100%);
+
+    @media (min-width: 1024px) {
+        height: 100%;
+    }
 `;
 const ImageOuter = styled.div`
     position: relative;
@@ -44,6 +48,10 @@ const ImageOuter = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    @media (min-width: 1024px) {
+        width: 70%;
+        height: 70%;
+    }
 `;
 
 const ArrowButtonPrev = styled.button`
@@ -54,7 +62,7 @@ const ArrowButtonPrev = styled.button`
     left: 15px;
     transition-duration: 0.2s;
     z-index: ${zIndex.level5};
-
+    cursor: pointer;
     &:active {
         transform: translateX(-5px);
     }
@@ -67,6 +75,7 @@ const ArrowButtonNext = styled.button`
     right: 15px;
     transition-duration: 0.2s;
     z-index: ${zIndex.level5};
+    cursor: pointer;
 
     &:active {
         transform: translateX(5px);
@@ -110,6 +119,7 @@ const ButtonStyled = styled.button`
     right: 60px;
     width: 30px;
     height: 30px;
+    cursor: pointer;
 `;
 
 const ButtonDiv = styled.div`

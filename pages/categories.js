@@ -18,6 +18,11 @@ const Subject = styled.h2`
     color: ${colors.mainHEX};
     font-size: ${fontSize.midFont};
     font-weight: ${fontWeight.fontWeightMedium};
+
+    @media (min-width: 1024px) {
+        font-size: ${fontSize.bigFontDesktop};
+        width: 50%;
+    }
 `;
 
 const InnerContainer = styled.div`
@@ -25,6 +30,11 @@ const InnerContainer = styled.div`
 
     display: flex;
     flex-direction: column;
+
+    @media (min-width: 1024px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
 `;
 
 const products = ({ categories }) => {

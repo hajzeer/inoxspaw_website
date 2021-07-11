@@ -2,7 +2,7 @@
 
 import styled from "styled-components";
 import Link from "next/link";
-import { colors, zIndex } from "../../utils";
+import { colors, zIndex, fontSize, fontWeight } from "../../utils";
 import Image from "next/image";
 import Hamburger from "./hamburger";
 
@@ -14,7 +14,7 @@ const HeaderStyled = styled.header`
 
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     z-index: ${zIndex.level8};
 `;
@@ -27,6 +27,52 @@ const Anchor = styled.a`
     justify-content: center;
     align-items: center;
     margin: 20px;
+
+    @media (min-width: 1024px) {
+        flex-grow: 8;
+        justify-content: flex-start;
+        align-items: center;
+    }
+`;
+const AnchorLink = styled.a`
+    width: fit-content;
+    position: relative;
+    display: none;
+    color: ${colors.mainHEX};
+    font-size: ${fontSize.bigFont};
+    font-weight: ${fontWeight.fontWeightMedium};
+    cursor: pointer;
+    overflow: hidden;
+
+    margin: 15px 15px;
+    text-decoration: none;
+    z-index: ${zIndex.level9};
+    transition-duration: 0.2s;
+
+    @media (min-width: 1024px) {
+        display: block;
+        flex-grow: 1;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: -70%;
+        bottom: 0;
+        width: 70%;
+        height: 3px;
+        background: ${colors.darkGreyHEX};
+        transition-duration: 0.2s;
+    }
+
+    &:hover::after {
+        transform: translateX(70%);
+    }
+
+    &:hover {
+        transform: scale(1.1);
+        color: ${colors.darkGreyHEX};
+    }
 `;
 
 const Header = () => {
@@ -41,6 +87,22 @@ const Header = () => {
                         quality='100'
                     />
                 </Anchor>
+            </Link>
+
+            <Link href='/'>
+                <AnchorLink>HOME</AnchorLink>
+            </Link>
+
+            <Link href='/about'>
+                <AnchorLink>O NAS</AnchorLink>
+            </Link>
+
+            <Link href='/categories'>
+                <AnchorLink>PRODUKTY</AnchorLink>
+            </Link>
+
+            <Link href='/contact'>
+                <AnchorLink>KONTAKT</AnchorLink>
             </Link>
             <Hamburger />
         </HeaderStyled>

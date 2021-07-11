@@ -6,14 +6,36 @@ import { colors, zIndex, fontSize } from "../utils";
 import Layout from "../layout/layout";
 import { client } from "../graphql/apollo-client.js";
 import { GET_PRODUCTS } from "../graphql/queries";
+import Image from "next/image";
 
-const ContactFormStyled = styled.div`
+const Container = styled.section`
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 50px 0;
+
+    @media (min-width: 1024px) {
+        height: 90vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+`;
+const ContactFormStyled = styled.form`
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 0 0 50px 0;
+
+    @media (min-width: 1024px) {
+        width: 60%;
+    }
 `;
 
 const InputStyle = styled.input.attrs((props) => ({
@@ -42,6 +64,12 @@ const InputStyle = styled.input.attrs((props) => ({
         border: 3px solid ${colors.mainHEX};
         outline: none;
     }
+
+    @media (min-width: 1024px) {
+        width: 500px;
+
+        height: 30px;
+    }
 `;
 
 const SelectStyled = styled.select`
@@ -62,12 +90,17 @@ const SelectStyled = styled.select`
         border: 3px solid ${colors.mainHEX};
         outline: none;
     }
+
+    @media (min-width: 1024px) {
+        width: 520px;
+    }
 `;
 
 const OptionStyled = styled.option`
     font-family: "Oswald", sans-serif;
     background: ${colors.defaultWhiteHEX};
     font-size: ${fontSize.smallFont};
+    text-transform: uppercase;
 `;
 
 const TextAreaStyle = styled.textarea.attrs((props) => ({
@@ -95,6 +128,10 @@ const TextAreaStyle = styled.textarea.attrs((props) => ({
     &:focus {
         border: 3px solid ${colors.mainHEX};
         outline: none;
+    }
+
+    @media (min-width: 1024px) {
+        width: 500px;
     }
 `;
 
@@ -174,6 +211,20 @@ const ButtonStyled = styled.button`
     }
 `;
 
+const ImageOuter = styled.div`
+    display: none;
+
+    @media (min-width: 1024px) {
+        display: inline-block;
+        width: 70%;
+        height: 70%;
+        position: relative;
+
+        clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
+        z-index: ${zIndex.levelMinus1};
+    }
+`;
+
 const LabelStyled = styled.label``;
 
 const ContactForm = ({ products }) => {
@@ -181,7 +232,19 @@ const ContactForm = ({ products }) => {
     let email = useRef(null);
     let message = useRef(null);
 
-    const handleSubmit = () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const formData = {};
+        Array.from(e.currentTarget.elements).forEach((field) => {
+            if (!field.name) return;
+            formData[field.name] = field.value;
+        });
+        fetch(`/api/mail`, {
+            method: "post",
+            body: JSON.stringify(formData),
+        });
+        console.log(formData);
+
         name.value = "";
         email.value = "";
         message.value = "";
@@ -189,37 +252,49 @@ const ContactForm = ({ products }) => {
 
     return (
         <Layout>
-            <ContactFormStyled>
-                <LabelStyled>Imię i nazwisko</LabelStyled>
-                <InputStyle
-                    ref={(el) => (name = el)}
-                    type='text'
-                    placeholder='Imię i nazwisko'
-                />
-                <LabelStyled>Email</LabelStyled>
-                <InputStyle
-                    ref={(el) => (email = el)}
-                    type='email'
-                    placeholder='Email'
-                />
-                <LabelStyled>Temat</LabelStyled>
-                <SelectStyled>
-                    {products.map(({ Name, id }) => {
-                        return (
-                            <OptionStyled key={id} value={Name}>
-                                {Name}
-                            </OptionStyled>
-                        );
-                    })}
-                    <OptionStyled value='INNE'>INNE</OptionStyled>
-                </SelectStyled>
-                <LabelStyled>Wiadomość</LabelStyled>
-                <TextAreaStyle
-                    ref={(el) => (message = el)}
-                    placeholder='WIADOMOŚĆ'
-                />
-                <ButtonStyled onClick={() => handleSubmit()}></ButtonStyled>
-            </ContactFormStyled>
+            <Container>
+                <ContactFormStyled method='post' onSubmit={handleSubmit}>
+                    <LabelStyled>Imię i nazwisko</LabelStyled>
+                    <InputStyle
+                        ref={(el) => (name = el)}
+                        type='text'
+                        placeholder='Imię i nazwisko'
+                        name='name'
+                    />
+                    <LabelStyled>Email</LabelStyled>
+                    <InputStyle
+                        ref={(el) => (email = el)}
+                        type='email'
+                        placeholder='Email'
+                        name='email'
+                    />
+                    <LabelStyled>Temat</LabelStyled>
+                    <SelectStyled name='option'>
+                        {products.map(({ Name, id }) => {
+                            return (
+                                <OptionStyled key={id} value={Name}>
+                                    {Name}
+                                </OptionStyled>
+                            );
+                        })}
+                        <OptionStyled value='INNE'>INNE</OptionStyled>
+                    </SelectStyled>
+                    <LabelStyled>Wiadomość</LabelStyled>
+                    <TextAreaStyle
+                        ref={(el) => (message = el)}
+                        placeholder='WIADOMOŚĆ'
+                        name='message'
+                    />
+                    <ButtonStyled></ButtonStyled>
+                </ContactFormStyled>
+                <ImageOuter>
+                    <Image
+                        src='/thirdImage.jpg'
+                        layout='fill'
+                        objectFit='cover'
+                    />
+                </ImageOuter>
+            </Container>
         </Layout>
     );
 };

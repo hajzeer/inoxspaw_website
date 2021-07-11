@@ -10,10 +10,25 @@ const Container = styled.section`
     position: relative;
     top: 85%;
     width: 100%;
-
+    z-index: ${zIndex.level6};
     background: ${colors.defaultWhiteHEX};
 
     overflow: hidden;
+
+    @media (min-width: 1024px) {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-around;
+        align-items: center;
+        height: 100vh;
+    }
+`;
+
+const ListDiv = styled.div`
+    @media (min-width: 1024px) {
+        width: 60%;
+        padding: 0 0 0 40px;
+    }
 `;
 
 const ImageOuter = styled.div`
@@ -28,7 +43,14 @@ const ImageOuter = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+
+    @media (min-width: 1024px) {
+        padding: 20px;
+        width: 80%;
+        height: 500px;
+        z-index: ${zIndex.level9};
+    }
 `;
 
 const ButtonStyled = styled.button`
@@ -97,6 +119,11 @@ const ButtonStyled = styled.button`
         transform: translateX(6px) translateY(6px);
         z-index: ${zIndex.levelMinus2};
     }
+
+    @media (min-width: 1024px) {
+        width: 200px;
+        height: 40px;
+    }
 `;
 
 const ImageContainer = styled.div`
@@ -109,8 +136,6 @@ const ImageContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    clip-path: polygon(0 20%, 100% 0%, 100% 80%, 0% 100%);
 `;
 
 const ImageStyled = styled(Image)`
@@ -166,6 +191,7 @@ const CategoryListComponent = ({ items }) => {
                                         active={current === index}
                                         src={item.Image.url}
                                         layout='fill'
+                                        objectFit='scale-down'
                                     />
                                 </ImageOuter>
                             )}
@@ -173,10 +199,12 @@ const CategoryListComponent = ({ items }) => {
                     );
                 })}
             </ImageContainer>
-            <CategoryListInIndex items={items} />
-            <Link href='/categories'>
-                <ButtonStyled />
-            </Link>
+            <ListDiv>
+                <CategoryListInIndex items={items} />
+                <Link href='/categories'>
+                    <ButtonStyled />
+                </Link>
+            </ListDiv>
         </Container>
     );
 };

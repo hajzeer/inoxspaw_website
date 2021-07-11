@@ -14,33 +14,57 @@ import SpecTable from "../../components/productsComponents/SpecTable";
 
 const Container = styled.section`
     width: 100%;
-    min-height: 100vh;
+    min-height: 120vh;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     padding: 0 0 50px 0;
 `;
 
+const BackgroundHelper = styled.div`
+    display: none;
+    position: absolute;
+    width: 100%;
+    @media (min-width: 1024px) {
+        display: inline;
+        position: absolute;
+        width: 100%;
+        height: 120%;
+        z-index: ${zIndex.levelMinus1};
+        clip-path: polygon(0 15%, 100% 0%, 100% 85%, 0% 100%);
+
+        background: #fff;
+    }
+`;
+
 const ImageContainer = styled.div`
     position: relative;
     background: #fff;
     width: 100%;
-    height: 400px;
+    height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
     clip-path: polygon(0 20%, 100% 0%, 100% 80%, 0% 100%);
+
+    @media (min-width: 1024px) {
+        flex: 3;
+        margin: 0 30px 0 0;
+        clip-path: none;
+        background: transparent;
+    }
 `;
 const ImageOuter = styled.div`
     position: relative;
     width: 90%;
-    height: 250px;
+    height: 450px;
     z-index: ${zIndex.level1};
     align-self: center;
     -webkit-filter: drop-shadow(5px 5px 5px #222);
     filter: drop-shadow(5px 5px 5px #222);
+    cursor: pointer;
 
     display: flex;
     flex-direction: row;
@@ -54,6 +78,13 @@ const Subject = styled.h2`
     color: ${colors.mainHEX};
     font-size: ${fontSize.midFont};
     font-weight: ${fontWeight.fontWeightMedium};
+
+    @media (min-width: 1024px) {
+        font-size: ${fontSize.bigFontDesktop};
+        align-self: ${(props) =>
+            props.alignSubject ? "flex-start" : "center"};
+        margin: 0 0 0 20px;
+    }
 `;
 
 const Paragraph = styled.p`
@@ -61,6 +92,10 @@ const Paragraph = styled.p`
     font-size: ${fontSize.smallFont};
 
     color: ${colors.darkGreyHEX};
+
+    @media (min-width: 1024px) {
+        font-size: ${fontSize.smallFont};
+    }
 `;
 
 const ButtonStyled = styled.button`
@@ -137,6 +172,7 @@ const ArrowButtonPrev = styled.button`
     left: 15px;
     transition-duration: 0.2s;
     z-index: ${zIndex.level5};
+    cursor: pointer;
 
     &:active {
         transform: translateX(-5px);
@@ -150,6 +186,7 @@ const ArrowButtonNext = styled.button`
     right: 15px;
     transition-duration: 0.2s;
     z-index: ${zIndex.level5};
+    cursor: pointer;
 
     &:active {
         transform: translateX(5px);
@@ -186,6 +223,7 @@ const ImageStyled = styled(Image)`
 
 const TableOuter = styled.div`
     width: 100%;
+    margin: 30px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -194,6 +232,44 @@ const TableOuter = styled.div`
 const TableStyled = styled.table`
     width: 90%;
     border-spacing: 3px;
+
+    @media (min-width: 1024px) {
+        width: 65%;
+    }
+`;
+
+const InfoTextContainer = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media (min-width: 1024px) {
+        flex: 3;
+        margin: 0 0 0 30px;
+    }
+`;
+
+const UpperSideOfPage = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media (min-width: 1024px) {
+        flex-direction: row-reverse;
+        justify-content: space-around;
+    }
+`;
+
+const DivHelper = styled.div`
+    display: none;
+
+    @media (min-width: 1024px) {
+        display: flex;
+
+        flex: 1;
+    }
 `;
 
 const Products = ({ products }) => {
@@ -243,6 +319,7 @@ const Products = ({ products }) => {
     return (
         <Layout>
             <Container>
+                <BackgroundHelper />
                 <Modal
                     isVisible={isVisible}
                     prevSlide={prevSlide}
@@ -252,35 +329,40 @@ const Products = ({ products }) => {
                     current={current}
                     setVisibility={handleClick}
                 />
-                <ImageContainer>
-                    <ArrowButtonPrev onClick={prevSlide}>
-                        <i className='gg-chevron-left'></i>
-                    </ArrowButtonPrev>
-                    <ArrowButtonNext onClick={nextSlide}>
-                        <i className='gg-chevron-right'></i>
-                    </ArrowButtonNext>
-                    {productsValue.Images.map((image, index) => {
-                        return (
-                            <>
-                                {index === current && (
-                                    <ImageOuter
-                                        key={index}
-                                        ref={refPassthrough}
-                                        onClick={handleClick}>
-                                        <ImageStyled
-                                            active={current === index}
-                                            src={image.url}
-                                            layout='fill'
-                                            objectFit='scale-down'
-                                        />
-                                    </ImageOuter>
-                                )}
-                            </>
-                        );
-                    })}
-                </ImageContainer>
-                <Subject>{productsValue.Name}</Subject>
-                <Paragraph>{productsValue.Description}</Paragraph>
+                <UpperSideOfPage>
+                    <ImageContainer>
+                        <ArrowButtonPrev onClick={prevSlide}>
+                            <i className='gg-chevron-left'></i>
+                        </ArrowButtonPrev>
+                        <ArrowButtonNext onClick={nextSlide}>
+                            <i className='gg-chevron-right'></i>
+                        </ArrowButtonNext>
+                        {productsValue.Images.map((image, index) => {
+                            return (
+                                <>
+                                    {index === current && (
+                                        <ImageOuter
+                                            key={index}
+                                            ref={refPassthrough}
+                                            onClick={handleClick}>
+                                            <ImageStyled
+                                                active={current === index}
+                                                src={image.url}
+                                                layout='fill'
+                                                objectFit='scale-down'
+                                            />
+                                        </ImageOuter>
+                                    )}
+                                </>
+                            );
+                        })}
+                    </ImageContainer>
+                    <DivHelper />
+                    <InfoTextContainer>
+                        <Subject alignSubject>{productsValue.Name}</Subject>
+                        <Paragraph>{productsValue.Description}</Paragraph>
+                    </InfoTextContainer>
+                </UpperSideOfPage>
                 <Subject>DANE TECHNICZNE</Subject>
                 <TableOuter>
                     <TableStyled>

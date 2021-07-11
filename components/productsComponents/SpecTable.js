@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { colors, fontWeight, fontSize, zIndex } from "../../utils";
 
 const CellStyled = styled.td`
+    padding: 10px;
     text-align: center;
     color: ${colors.darkGreyHEX};
     background: ${colors.defaultWhiteHEX};

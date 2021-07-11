@@ -8,26 +8,55 @@ import Layout from "../layout/layout";
 import { colors, fontWeight, fontSize, zIndex } from "../utils";
 
 const Container = styled.section`
-    width: 100%;
     padding: 0 0 50px 0;
 
     overflow: hidden;
+
+    @media (min-width: 1024px) {
+        height: 90vh;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+    }
+`;
+
+const AboutDiv = styled.div`
+    @media (min-width: 1024px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 65%;
+    }
 `;
 
 const ImageOuter = styled.div`
     width: 100%;
+    height: 250px;
     position: relative;
-    right: -40px;
+
+    margin: 0 0 20px 20px;
 
     clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
     z-index: ${zIndex.levelMinus1};
+
+    @media (min-width: 1024px) {
+        width: 70%;
+        height: 70%;
+    }
 `;
 
 const Paragraph = styled.p`
-    margin: 20px 0 0 20px;
+    margin: 20px 20px;
     font-size: ${fontSize.smallFont};
 
     color: ${colors.darkGreyHEX};
+
+    @media (min-width: 1024px) {
+        margin: 0 0 0 40px;
+        font-weight: ${fontWeight.fontWeightReagular};
+        font-size: ${fontSize.midFont};
+    }
 `;
 
 const Subject = styled.h1`
@@ -36,6 +65,12 @@ const Subject = styled.h1`
     font-size: ${fontSize.bigFont};
     font-weight: ${fontWeight.fontWeightMedium};
     z-index: ${zIndex.level5};
+
+    @media (min-width: 1024px) {
+        margin: 0 0 0 40px;
+
+        font-size: ${fontSize.bigFontDesktop};
+    }
 `;
 
 const ButtonStyled = styled.button`
@@ -102,6 +137,13 @@ const ButtonStyled = styled.button`
         transform: translateX(6px) translateY(6px);
         z-index: ${zIndex.levelMinus2};
     }
+
+    @media (min-width: 1024px) {
+        width: 200px;
+        height: 40px;
+        margin: 40px 0 0 0;
+        left: 40px;
+    }
 `;
 
 const About = () => {
@@ -111,26 +153,37 @@ const About = () => {
                 <ImageOuter>
                     <Image
                         src='/thirdImage.jpg'
-                        width={400}
-                        height={300}
-                        quality={100}
+                        layout='fill'
+                        objectFit='cover'
                     />
                 </ImageOuter>
-                <Subject>O NAS</Subject>
-                <Paragraph>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Donec fermentum libero ac odio convallis, ut feugiat felis
-                    viverra. Duis sollicitudin iaculis aliquet. Lorem ipsum
-                    dolor sit amet, consectetur adipiscing elit. Donec fermentum
-                    libero ac odio convallis, ut feugiat felis viverra. Duis
-                    sollicitudin iaculis aliquet. Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit. Donec fermentum libero ac odio
-                    convallis, ut feugiat felis viverra. Duis sollicitudin
-                    iaculis aliquet.
-                </Paragraph>
-                <Link href='/categories'>
-                    <ButtonStyled />
-                </Link>
+                <AboutDiv>
+                    <Subject>O NAS</Subject>
+                    <Paragraph>
+                        InoxSpaw jest firmą projektującą i produkującą maszyny
+                        rolnicze jak i całe linie produkcyjne wykorzystywane w
+                        przemyśle warzywniczym.Wieloletnie doświadczenie w
+                        przemyśle produkcyjnym pozwoliło nam na poznanie
+                        najnowszych technologii produkcji innowacyjnych maszyn
+                        rolniczych jak i urządzeń przemysłowych. Firma InoxSpaw
+                        współpracuje długie lata z gospodarstwami poznając
+                        najnowsze potrzeby rynku. Działalnością firmy jest
+                        produkcja maszyn rolniczych głównie do dozowania,
+                        czyszczenia,polerowania,sortowania warzyw i pakowania.
+                        Realizujemy nietypowe zamówienia jak również produkujemy
+                        seryjnie. Zapewniamy profesjonalną i fachową obsługę
+                        klienta, której skutkiem jest wyposażenie w nowoczesne i
+                        zautomatyzowane urządzenia i linie produkcyjne. Dla nas
+                        najważniejsza jest, jakość i długa bezproblemowa
+                        sprawność wykonywanych maszyn, dlatego ciągle szukamy
+                        nowoczesnych rozwiązań technologicznych. Dla tego
+                        dokładamy wszelkich starań, aby nasza firma rozwijała
+                        się dynamicznie w branży produkcyjnej maszyn rolniczych.
+                    </Paragraph>
+                    <Link href='/categories'>
+                        <ButtonStyled />
+                    </Link>
+                </AboutDiv>
             </Container>
         </Layout>
     );
