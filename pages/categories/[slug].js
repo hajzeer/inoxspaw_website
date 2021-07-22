@@ -113,7 +113,6 @@ const CategoriesInner = ({ categories }) => {
     const categoryVariable = categories[0];
     const router = useRouter();
 
-    console.log(categoryVariable);
     const [current, setCurrent] = useState(0);
 
     const ImageArray = categoryVariable.products.length;
@@ -173,7 +172,7 @@ const CategoriesInner = ({ categories }) => {
                                         <ImageStyled
                                             key={index}
                                             active={current === index}
-                                            src={itemsitem.Images[0].url}
+                                            src={item.Images[0].url}
                                             layout='fill'
                                             objectFit='scale-down'
                                         />
