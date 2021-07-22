@@ -1,5 +1,5 @@
 /** @format */
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import { colors, zIndex } from "../../utils";
 import Image from "next/image";
@@ -167,10 +167,10 @@ const fadeOut = keyframes`
     opacity: 1;
   }
 `;
-const CategoryListComponent = ({ items }) => {
+const CategoryListComponent = ({ items, images }) => {
     const [current, setCurrent] = useState(0);
 
-    const ImageArray = items.length;
+    const ImageArray = images[0].Images.length;
 
     useEffect(() => {
         const Interval = setInterval(() => {
@@ -181,7 +181,7 @@ const CategoryListComponent = ({ items }) => {
     return (
         <Container>
             <ImageContainer>
-                {items.map((item, index) => {
+                {images[0].Images.map((value, index) => {
                     return (
                         <>
                             {index === current && (
@@ -189,7 +189,7 @@ const CategoryListComponent = ({ items }) => {
                                     <ImageStyled
                                         key={index}
                                         active={current === index}
-                                        src={item.Image.url}
+                                        src={value.url}
                                         layout='fill'
                                         objectFit='scale-down'
                                     />

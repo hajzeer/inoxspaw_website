@@ -16,7 +16,7 @@ const Container = styled.section`
 const Subject = styled.h2`
     width: fit-content;
     position: relative;
-    padding: 5px 10px;
+    padding: 5px 20px;
     color: ${colors.darkGreyHEX};
     font-size: ${fontSize.midFont};
     font-weight: ${fontWeight.fontWeightReagular};
@@ -43,7 +43,7 @@ const Subject = styled.h2`
         width: 30px;
         height: 70%;
         top: 0;
-        left: -5px;
+        left: -6px;
         background: ${colors.mainHEX};
         transition-duration: 0.2s;
         z-index: ${zIndex.levelMinus1};

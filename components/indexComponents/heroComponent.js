@@ -1,7 +1,7 @@
 /** @format */
-
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { colors, fontWeight, fontSize, zIndex } from "../../utils";
 
 const Container = styled.section`
@@ -22,8 +22,6 @@ const ContainerInner = styled.div`
     justify-content: center;
 
     @media (min-width: 1024px) {
-        top: 100px;
-
         flex-direction: row;
         justify-content: center;
         align-items: center;
@@ -32,8 +30,11 @@ const ContainerInner = styled.div`
 
 const ImageOuter = styled.div`
     position: relative;
+    left: 0;
+    margin: 0;
+    align-self: flex-start;
     width: 90%;
-    height: 100vh;
+    height: 100%;
 
     clip-path: polygon(0 0, 75% 0, 100% 100%, 0% 100%);
 
@@ -88,17 +89,66 @@ const HelperDiv = styled.div`
     }
 `;
 
-const Hero = () => {
+const ImageStyled = styled(Image)`
+    display: inline-block;
+    visibility: ${(props) => (props.active ? "visible" : "hidden")};
+    animation: ${(props) => (props.active ? fadeIn : fadeOut)} 0.4s linear;
+    transition: visibility 0.4s linear;
+`;
+
+const fadeIn = keyframes`
+  from {
+    transform: scale(.9);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+`;
+const fadeOut = keyframes`
+  from {
+    transform: scale(1);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(.9);
+    opacity: 1;
+  }
+`;
+
+const Hero = ({ images }) => {
+    const [current, setCurrent] = useState(0);
+
+    const ImageArray = images[1].Images.length;
+
+    useEffect(() => {
+        const Interval = setInterval(() => {
+            setCurrent(current === ImageArray - 1 ? 0 : current + 1);
+        }, 6000);
+        return () => clearInterval(Interval);
+    }, [current]);
     return (
         <Container>
             <ContainerInner>
-                <ImageOuter>
-                    <Image
-                        src='/firstImage.jpg'
-                        layout='fill'
-                        objectFit='cover'
-                    />
-                </ImageOuter>
+                {images[1].Images.map((value, index) => {
+                    return (
+                        <>
+                            {index === current && (
+                                <ImageOuter>
+                                    <ImageStyled
+                                        key={index}
+                                        active={current === index}
+                                        src={value.url}
+                                        layout='fill'
+                                    />
+                                </ImageOuter>
+                            )}
+                        </>
+                    );
+                })}
                 <TextDivStyled>
                     <Subject>
                         MASZYNY ROLCZNICZE

@@ -1,6 +1,7 @@
 /** @format */
 
-import styled from "styled-components";
+import { useState, useEffect } from "react";
+import styled, { keyframes } from "styled-components";
 import Image from "next/image";
 import Layout from "../../layout/layout";
 import { client } from "../../graphql/apollo-client";
@@ -49,7 +50,7 @@ const ImageOuter = styled.div`
 
     @media (min-width: 1024px) {
         width: 60%;
-        margin: 40px 0;
+        margin: 0 0 30px 0;
         height: 400px;
     }
 `;
@@ -78,11 +79,51 @@ const Subject = styled.h2`
         left: 10%;
     }
 `;
+const ImageStyled = styled(Image)`
+    display: inline-block;
+    visibility: ${(props) => (props.active ? "visible" : "hidden")};
+    animation: ${(props) => (props.active ? fadeIn : fadeOut)} 0.4s linear;
+    transition: visibility 0.4s linear;
+`;
+
+const fadeIn = keyframes`
+  from {
+    transform: scale(.9);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+`;
+const fadeOut = keyframes`
+  from {
+    transform: scale(1);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(.9);
+    opacity: 1;
+  }
+`;
 
 const CategoriesInner = ({ categories }) => {
     const categoryVariable = categories[0];
     const router = useRouter();
 
+    console.log(categoryVariable);
+    const [current, setCurrent] = useState(0);
+
+    const ImageArray = categoryVariable.products.length;
+
+    useEffect(() => {
+        const Interval = setInterval(() => {
+            setCurrent(current === ImageArray - 1 ? 0 : current + 1);
+        }, 4000);
+        return () => clearInterval(Interval);
+    }, [current]);
     if (router.isFallback) {
         return (
             <>
@@ -90,13 +131,27 @@ const CategoriesInner = ({ categories }) => {
                     <Container>
                         <Subject>{categoryVariable.Name}</Subject>
                         <ImageOuter>
-                            <ImageInner>
-                                <Image
-                                    src={categoryVariable.Image.url}
-                                    layout='fill'
-                                    objectFit='scale-down'
-                                />
-                            </ImageInner>
+                            {categoryVariable.products.map((item, index) => {
+                                return (
+                                    <>
+                                        {index === current && (
+                                            <ImageOuter>
+                                                <ImageInner>
+                                                    <ImageStyled
+                                                        key={index}
+                                                        active={
+                                                            current === index
+                                                        }
+                                                        src={item.Images[0].url}
+                                                        layout='fill'
+                                                        objectFit='scale-down'
+                                                    />
+                                                </ImageInner>
+                                            </ImageOuter>
+                                        )}
+                                    </>
+                                );
+                            })}
                         </ImageOuter>
                         <Subject>Loading...</Subject>
                     </Container>
@@ -109,15 +164,25 @@ const CategoriesInner = ({ categories }) => {
         <Layout>
             <Container>
                 <Subject>{categoryVariable.Name}</Subject>
-                <ImageOuter>
-                    <ImageInner>
-                        <Image
-                            src={categoryVariable.Image.url}
-                            layout='fill'
-                            objectFit='scale-down'
-                        />
-                    </ImageInner>
-                </ImageOuter>
+                {categoryVariable.products.map((item, index) => {
+                    return (
+                        <>
+                            {index === current && (
+                                <ImageOuter>
+                                    <ImageInner>
+                                        <ImageStyled
+                                            key={index}
+                                            active={current === index}
+                                            src={item.Images[0].url}
+                                            layout='fill'
+                                            objectFit='scale-down'
+                                        />
+                                    </ImageInner>
+                                </ImageOuter>
+                            )}
+                        </>
+                    );
+                })}
                 <ProductsDiv>
                     <ProductsList items={categoryVariable.products} />
                 </ProductsDiv>

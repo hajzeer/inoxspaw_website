@@ -70,3 +70,13 @@ export const GET_PRODUCTS_DETAILS = gql`
         }
     }
 `;
+
+export const GET_IMAGES = gql`
+    query ImageCollection {
+        imagesCollections {
+            Images {
+                url
+            }
+        }
+    }
+`;

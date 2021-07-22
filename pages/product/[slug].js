@@ -50,7 +50,7 @@ const ImageContainer = styled.div`
     clip-path: polygon(0 20%, 100% 0%, 100% 80%, 0% 100%);
 
     @media (min-width: 1024px) {
-        flex: 3;
+        flex: 5;
         margin: 0 30px 0 0;
         clip-path: none;
         background: transparent;

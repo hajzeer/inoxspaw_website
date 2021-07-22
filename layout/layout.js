@@ -13,6 +13,24 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Oswald', sans-serif;
+
+    ::-webkit-scrollbar {
+  width: 10px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 4px grey; 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: ${colors.mainHEX}; 
+  border-radius: 25px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000; 
+}
 }
 `;
 
