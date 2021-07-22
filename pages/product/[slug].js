@@ -22,9 +22,14 @@ const Container = styled.section`
 `;
 
 const BackgroundHelper = styled.div`
-    display: none;
+    display: inline;
     position: absolute;
     width: 100%;
+    height: 65%;
+    z-index: ${zIndex.levelMinus1};
+    clip-path: polygon(0 10%, 100% 0%, 100% 90%, 0% 100%);
+
+    background: #fff;
     @media (min-width: 1024px) {
         display: inline;
         position: absolute;
@@ -39,15 +44,13 @@ const BackgroundHelper = styled.div`
 
 const ImageContainer = styled.div`
     position: relative;
-    background: #fff;
+    background: transparent;
     width: 100%;
     height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    clip-path: polygon(0 20%, 100% 0%, 100% 80%, 0% 100%);
 
     @media (min-width: 1024px) {
         flex: 5;
@@ -64,6 +67,7 @@ const ImagesRow = styled.div`
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    overflow: auto;
 `;
 
 const ImagesInRowOuter = styled.button`

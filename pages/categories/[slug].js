@@ -173,7 +173,7 @@ const CategoriesInner = ({ categories }) => {
                                         <ImageStyled
                                             key={index}
                                             active={current === index}
-                                            src={item.Images[0].url}
+                                            src={itemsitem.Images[0].url}
                                             layout='fill'
                                             objectFit='scale-down'
                                         />
