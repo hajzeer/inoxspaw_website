@@ -1,5 +1,5 @@
 /** @format */
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import { client } from "../../graphql/apollo-client";
 import { GET_PRODUCTS, GET_PRODUCTS_DETAILS } from "../../graphql/queries";
@@ -56,10 +56,29 @@ const ImageContainer = styled.div`
         background: transparent;
     }
 `;
+
+const ImagesRow = styled.div`
+    width: 100%;
+    align-self: flex-end;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+`;
+
+const ImagesInRowOuter = styled.button`
+    position: relative;
+    width: 150px;
+    height: 100px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+`;
+
 const ImageOuter = styled.div`
     position: relative;
     width: 90%;
-    height: 450px;
+    height: 550px;
     z-index: ${zIndex.level1};
     align-self: center;
     -webkit-filter: drop-shadow(5px 5px 5px #222);
@@ -307,6 +326,10 @@ const Products = ({ products }) => {
         },
     });
 
+    const handleIndexClick = (e) => {
+        setCurrent(e);
+    };
+
     const refPassthrough = (el) => {
         // call useSwipeable ref prop with el
         handerLeft.ref(el);
@@ -315,6 +338,13 @@ const Products = ({ products }) => {
         // set myRef el so you can access it yourself
         myRef.current = el;
     };
+
+    useEffect(() => {
+        const Interval = setInterval(() => {
+            setCurrent(current === ImageArray - 1 ? 0 : current + 1);
+        }, 3000);
+        return () => clearInterval(Interval);
+    }, [current]);
 
     return (
         <Layout>
@@ -356,6 +386,25 @@ const Products = ({ products }) => {
                                 </>
                             );
                         })}
+                        <ImagesRow>
+                            {productsValue.Images.map((image, index) => {
+                                return (
+                                    <>
+                                        <ImagesInRowOuter
+                                            key={index}
+                                            onClick={() =>
+                                                handleIndexClick(index)
+                                            }>
+                                            <Image
+                                                src={image.url}
+                                                layout='fill'
+                                                objectFit='scale-down'
+                                            />
+                                        </ImagesInRowOuter>
+                                    </>
+                                );
+                            })}
+                        </ImagesRow>
                     </ImageContainer>
                     <DivHelper />
                     <InfoTextContainer>
