@@ -8,7 +8,7 @@ import CategoryListInIndex from "./categoryListInIndex";
 
 const Container = styled.section`
     position: relative;
-    top: 80%;
+    top: 85%;
     width: 100%;
     height: auto;
     z-index: ${zIndex.level6};
