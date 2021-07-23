@@ -1,12 +1,13 @@
 /** @format */
 
-import { useRef } from "react";
+import { useRef, useContext } from "react";
 import styled from "styled-components";
 import { colors, zIndex, fontSize } from "../utils";
 import Layout from "../layout/layout";
 import { client } from "../graphql/apollo-client.js";
 import { GET_PRODUCTS } from "../graphql/queries";
 import Image from "next/image";
+import { OpitonContext } from "../context/OptionContext";
 
 const Container = styled.section`
     width: 100%;
@@ -232,6 +233,9 @@ const ContactForm = ({ products }) => {
     let email = useRef(null);
     let message = useRef(null);
 
+    const { isOption } = useContext(OpitonContext);
+    console.log(isOption);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = {};
@@ -272,9 +276,16 @@ const ContactForm = ({ products }) => {
                     <SelectStyled name='option'>
                         {products.map(({ Name, id }) => {
                             return (
-                                <OptionStyled key={id} value={Name}>
-                                    {Name}
-                                </OptionStyled>
+                                <>
+                                    {Name !== isOption ? null : (
+                                        <OptionStyled value={isOption} selected>
+                                            {isOption}
+                                        </OptionStyled>
+                                    )}
+                                    <OptionStyled key={id} value={Name}>
+                                        {Name}
+                                    </OptionStyled>
+                                </>
                             );
                         })}
                         <OptionStyled value='INNE'>INNE</OptionStyled>

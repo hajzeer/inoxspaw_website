@@ -1,5 +1,5 @@
 /** @format */
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import styled, { keyframes } from "styled-components";
 import { client } from "../../graphql/apollo-client";
 import { GET_PRODUCTS, GET_PRODUCTS_DETAILS } from "../../graphql/queries";
@@ -11,6 +11,7 @@ import { useSwipeable } from "react-swipeable";
 import Layout from "../../layout/layout";
 import Modal from "../../components/productsComponents/modal";
 import SpecTable from "../../components/productsComponents/SpecTable";
+import { OpitonContext } from "../../context/OptionContext";
 
 const Container = styled.section`
     width: 100%;
@@ -299,6 +300,7 @@ const Products = ({ products }) => {
     const [current, setCurrent] = useState(0);
     const [isVisible, setIsVisible] = useState(false);
     const myRef = useRef();
+    const { setIsOption } = useContext(OpitonContext);
 
     const productsValue = products[0];
     const ImageArray = productsValue.Images.length;
@@ -341,6 +343,10 @@ const Products = ({ products }) => {
 
         // set myRef el so you can access it yourself
         myRef.current = el;
+    };
+
+    const handleToContact = (e) => {
+        setIsOption(e);
     };
 
     useEffect(() => {
@@ -425,7 +431,9 @@ const Products = ({ products }) => {
                     </TableStyled>
                 </TableOuter>
                 <Link href='/contact'>
-                    <ButtonStyled />
+                    <ButtonStyled
+                        onClick={() => handleToContact(productsValue.Name)}
+                    />
                 </Link>
             </Container>
         </Layout>
