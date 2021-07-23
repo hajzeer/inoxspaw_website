@@ -69,6 +69,25 @@ const ImagesRow = styled.div`
     justify-content: space-around;
     align-items: center;
     overflow: auto;
+
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 4px grey;
+        border-radius: 25px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: ${colors.mainHEX};
+        border-radius: 25px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #b30000;
+    }
 `;
 
 const ImagesInRowOuter = styled.button`

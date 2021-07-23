@@ -21,6 +21,8 @@ body {
 
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 4px grey; 
+  border-radius: 25px;
+
 }
  
 ::-webkit-scrollbar-thumb {

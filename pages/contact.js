@@ -234,30 +234,31 @@ const ContactForm = ({ products }) => {
     let message = useRef(null);
 
     const { isOption } = useContext(OpitonContext);
-    console.log(isOption);
 
-    const handleSubmit = async (e) => {
+    async function handleOnSubmit(e) {
         e.preventDefault();
+
         const formData = {};
+
         Array.from(e.currentTarget.elements).forEach((field) => {
             if (!field.name) return;
             formData[field.name] = field.value;
         });
-        fetch(`/api/mail`, {
-            method: "post",
+
+        await fetch("/api/mail", {
+            method: "POST",
             body: JSON.stringify(formData),
         });
-        console.log(formData);
 
         name.value = "";
         email.value = "";
         message.value = "";
-    };
+    }
 
     return (
         <Layout>
             <Container>
-                <ContactFormStyled method='post' onSubmit={handleSubmit}>
+                <ContactFormStyled method='post' onSubmit={handleOnSubmit}>
                     <LabelStyled>Imię i nazwisko</LabelStyled>
                     <InputStyle
                         ref={(el) => (name = el)}
