@@ -8,8 +8,9 @@ import CategoryListInIndex from "./categoryListInIndex";
 
 const Container = styled.section`
     position: relative;
-    top: 85%;
+    top: 80%;
     width: 100%;
+    height: auto;
     z-index: ${zIndex.level6};
     background: ${colors.defaultWhiteHEX};
 
@@ -54,7 +55,7 @@ const ImageOuter = styled.div`
 `;
 
 const ButtonStyled = styled.button`
-    margin: 20px 0 0 0;
+    margin: 20px 0 35px 0;
     padding: 0;
     position: relative;
     outline: none;

@@ -17,6 +17,7 @@ const HeaderStyled = styled.header`
     justify-content: space-around;
     align-items: center;
     z-index: ${zIndex.level8};
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
 `;
 
 const Anchor = styled.a`
