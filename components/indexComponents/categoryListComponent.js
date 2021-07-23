@@ -10,7 +10,7 @@ const Container = styled.section`
     position: relative;
     top: 85%;
     width: 100%;
-    height: auto;
+    height: 130vh;
     z-index: ${zIndex.level6};
     background: ${colors.defaultWhiteHEX};
 
@@ -21,7 +21,7 @@ const Container = styled.section`
         flex-direction: row-reverse;
         justify-content: space-around;
         align-items: center;
-        height: 100vh;
+        height: 130vh;
     }
 `;
 
@@ -55,7 +55,7 @@ const ImageOuter = styled.div`
 `;
 
 const ButtonStyled = styled.button`
-    margin: 20px 0 35px 0;
+    margin: 20px 0 30px 0;
     padding: 0;
     position: relative;
     outline: none;

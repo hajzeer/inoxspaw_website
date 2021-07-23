@@ -5,7 +5,7 @@ import { colors, fontSize, fontWeight, zIndex } from "../../utils";
 import Link from "next/link";
 const Container = styled.section`
     position: relative;
-    top: -50px;
+    top: -40px;
     left: 20px;
     display: flex;
     flex-direction: column;
