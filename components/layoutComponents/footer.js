@@ -10,7 +10,8 @@ const FooterStyled = styled.footer`
     bottom: 0;
     width: 100%;
 
-    padding: 40px 0 40px 0;
+    padding: 0 0 40px 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
 
     background: ${colors.midGreyHEX};
 

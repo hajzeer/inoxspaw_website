@@ -8,7 +8,7 @@ import Hamburger from "./hamburger";
 
 const HeaderStyled = styled.header`
     width: 100%;
-    height: 60px;
+    height: 100px;
     background: ${colors.defaultWhiteHEX};
     position: fixed;
 
