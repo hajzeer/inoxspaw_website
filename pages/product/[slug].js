@@ -470,7 +470,7 @@ export const getStaticPaths = async () => {
     return { paths, fallback: false };
 };
 
-export const getStaticProps = async (context) => {
+export const getInitialProps = async (context) => {
     const { slug: Slug } = context.params;
     const { data } = await client.query({
         query: GET_PRODUCTS_DETAILS,
@@ -480,6 +480,7 @@ export const getStaticProps = async (context) => {
         props: {
             products: await data.products,
         },
+        revalidate: 60,
     };
 };
 

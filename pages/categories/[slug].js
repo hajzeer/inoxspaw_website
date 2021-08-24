@@ -211,6 +211,7 @@ export const getStaticProps = async (context) => {
         props: {
             categories: await data.categories,
         },
+        revalidate: 60,
     };
 };
 
