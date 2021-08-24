@@ -470,7 +470,7 @@ export const getStaticPaths = async () => {
     return { paths, fallback: false };
 };
 
-export const getInitialProps = async (context) => {
+export const getStaticProps = async (context) => {
     const { slug: Slug } = context.params;
     const { data } = await client.query({
         query: GET_PRODUCTS_DETAILS,
