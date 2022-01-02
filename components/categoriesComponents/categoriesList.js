@@ -77,11 +77,13 @@ const CategoriesList = ({ items, value }) => {
                 polygon={value}
                 key={items.id}>
                 <ImageOuter flex={value}>
-                    <Image
-                        src={items.Image.url}
-                        layout='fill'
-                        objectFit='scale-down'
-                    />
+                    {items.Image && (
+                        <Image
+                            src={items.Image.url}
+                            layout='fill'
+                            objectFit='scale-down'
+                        />
+                    )}
                 </ImageOuter>
                 <Subject flex={value}>{items.Name}</Subject>
             </Container>
