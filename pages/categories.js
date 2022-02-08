@@ -40,20 +40,6 @@ const InnerContainer = styled.div`
 const products = ({ categories }) => {
     let helper;
 
-    const router = useRouter();
-
-    if (router.isFallback) {
-        return (
-            <>
-                <Layout>
-                    <Container>
-                        <Subject>Loading...</Subject>
-                    </Container>
-                </Layout>
-            </>
-        );
-    }
-
     return (
         <Layout>
             <Container>

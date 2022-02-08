@@ -42,6 +42,7 @@ const Container = styled.section`
 const Subject = styled.h2`
     align-self: ${(props) => (props.flex ? "flex-end" : "flex-start")};
     margin: 0 20px 0 20px;
+    width: 60%;
 
     color: ${colors.mainHEX};
     font-size: ${fontSize.midFont};

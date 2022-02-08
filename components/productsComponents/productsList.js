@@ -40,7 +40,7 @@ const Container = styled.section`
 
 const Subject = styled.h3`
     align-self: ${(props) => (props.flex ? "flex-end" : "flex-start")};
-
+    width: 60%;
     margin: 20px 50px 0 50px;
     text-transform: uppercase;
 
