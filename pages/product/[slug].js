@@ -467,7 +467,7 @@ export const getStaticPaths = async () => {
         params: { slug: element.Slug },
     }));
 
-    return { paths, fallback: false };
+    return { paths, fallback: "blocking" };
 };
 
 export const getStaticProps = async (context) => {
